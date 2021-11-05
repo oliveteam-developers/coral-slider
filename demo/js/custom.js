@@ -1,0 +1,1 @@
+var coral = new Coral({});
