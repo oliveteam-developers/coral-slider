@@ -84,8 +84,9 @@ export default class Coral {
       const element = $('.coral-slider').offset();
       const start = this.startPoint;
       const end = event.originalEvent.screenX;
-      const leftOffset = element.left - start + end;
-      this.animation(leftOffset, this.speed);
+      this.leftOffset = element.left - start + end;
+      this.leftOffset = this.leftOffset > 0 ? 0 : this.leftOffset;
+      this.animation(this.leftOffset, this.speed);
       this.startPoint = null;
       this.drag = false;
     });
@@ -118,6 +119,12 @@ export default class Coral {
   appendToSlider() {
     this.sliderElement = this.sliderElement.clone();
     this.sliderElement.appendTo('.coral-slider');
+    this.sliderElementCount += 1;
+  }
+
+  prependToSlider() {
+    this.sliderElement = this.sliderElement.clone();
+    this.sliderElement.prependTo('.coral-slider');
     this.sliderElementCount += 1;
   }
 
