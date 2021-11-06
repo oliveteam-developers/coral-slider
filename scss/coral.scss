@@ -2,6 +2,10 @@
   position: relative;
   white-space: nowrap;
   font-size: 0;
+  cursor: pointer;
+  &.scroll-x {
+    overflow-x: scroll;
+  }
   .coral-item {
     display: inline-block;
     vertical-align: top;
