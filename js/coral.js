@@ -11,21 +11,21 @@ export default class Coral {
     this.leftOffset = 0;
     this.drag = false;
     this.startPoint = null;
+    this.class = null;
     this.setup(obj);
     this.init();
   }
 
   setup(obj) {
-    if (obj) {
-      this.stepWidth = obj.stepWidth ? obj.stepWidth : 500;
-      this.speed = obj.speed ? obj.speed : 1;
-      this.autoplaySpeed = obj.autoplaySpeed ? obj.autoplaySpeed : 0;
-    }
+    this.stepWidth = obj && obj.stepWidth ? obj.stepWidth : 500;
+    this.speed = obj && obj.speed ? obj.speed : 1;
+    this.autoplaySpeed = obj && obj.autoplaySpeed ? obj.autoplaySpeed : 0;
+    this.class = obj && obj.class ? obj.class : 'coral-slider';
   }
 
   init() {
-    if ($('.coral-slider')) {
-      this.sliderElement = $('.coral-slider').children().clone();
+    if ($(`.${this.class}`)) {
+      this.sliderElement = $(`.${this.class}`).children().clone();
       this.handleMouseEnter();
       this.handleMouseLeave();
       this.handleTouchStart();
@@ -39,7 +39,7 @@ export default class Coral {
   }
 
   getSliderWidth() {
-    const sliderItems = $('.coral-slider').children();
+    const sliderItems = $(`.${this.class}`).children();
     if (sliderItems && sliderItems.length) {
       $(sliderItems).each((index, object) => {
         this.sliderWidth += $(object).width();
@@ -48,19 +48,19 @@ export default class Coral {
   }
 
   handleMouseEnter() {
-    $('.coral-slider').on('mouseenter', () => {
+    $(`.${this.class}`).on('mouseenter', () => {
       this.destroyRunning();
     });
   }
 
   handleMouseLeave() {
-    $('.coral-slider').on('mouseleave', () => {
+    $(`.${this.class}`).on('mouseleave', () => {
       this.runningSlider();
     });
   }
 
   handleTouchStart() {
-    $('.coral-slider').on('touchstart mousedown', (event) => {
+    $(`.${this.class}`).on('touchstart mousedown', (event) => {
       event.preventDefault();
       this.drag = true;
       this.startPoint = event.originalEvent.screenX;
@@ -68,20 +68,20 @@ export default class Coral {
   }
 
   handleTouchMove() {
-    $('.coral-slider').on('touchmove mousemove', (event) => {
+    $(`.${this.class}`).on('touchmove mousemove', (event) => {
       event.preventDefault();
     });
   }
 
   animation(offset, speed) {
-    $('.coral-slider').css('transform', `translate3d(${offset}px, 0px, 0px)`);
-    $('.coral-slider').css('transition', `transform ${speed}s`);
+    $(`.${this.class}`).css('transform', `translate3d(${offset}px, 0px, 0px)`);
+    $(`.${this.class}`).css('transition', `transform ${speed}s`);
   }
 
   handleTouchEnd() {
-    $('.coral-slider').on('touchend mouseup', (event) => {
+    $(`.${this.class}`).on('touchend mouseup', (event) => {
       event.preventDefault();
-      const element = $('.coral-slider').offset();
+      const element = $(`.${this.class}`).offset();
       const start = this.startPoint;
       const end = event.originalEvent.screenX;
       this.leftOffset = element.left - start + end;
@@ -93,16 +93,16 @@ export default class Coral {
   }
 
   handleTouchCancel() {
-    $('.coral-slider').on('touchcancel mouseleave', (event) => {
+    $(`.${this.class}`).on('touchcancel mouseleave', (event) => {
       event.preventDefault();
     });
   }
 
   runningSlider() {
     this.sliderInterval = setInterval(() => {
-      this.leftOffset = Math.ceil($('.coral-slider').find('.coral-item').first().offset().left);
-      $('.coral-slider').css('transform', `translate3d(${this.leftOffset - this.stepWidth}px, 0px, 0px)`);
-      $('.coral-slider').css('transition', `transform ${this.speed}s`);
+      this.leftOffset = Math.ceil($(`.${this.class}`).find('.coral-item').first().offset().left);
+      $(`.${this.class}`).css('transform', `translate3d(${this.leftOffset - this.stepWidth}px, 0px, 0px)`);
+      $(`.${this.class}`).css('transition', `transform ${this.speed}s`);
       this.animation(this.leftOffset - this.stepWidth, this.speed);
     }, this.autoplaySpeed);
   }
@@ -118,13 +118,13 @@ export default class Coral {
 
   appendToSlider() {
     this.sliderElement = this.sliderElement.clone();
-    this.sliderElement.appendTo('.coral-slider');
+    this.sliderElement.appendTo(`.${this.class}`);
     this.sliderElementCount += 1;
   }
 
   prependToSlider() {
     this.sliderElement = this.sliderElement.clone();
-    this.sliderElement.prependTo('.coral-slider');
+    this.sliderElement.prependTo(`.${this.class}`);
     this.sliderElementCount += 1;
   }
 
