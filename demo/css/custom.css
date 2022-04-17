@@ -1,4 +1,26 @@
+body {
+    background: #010415;
+}
+
+.title {
+    margin: 3rem 0 2rem;
+}
+
+.title>h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+}
+
 .container {
-    width: 100%;
     overflow-x: hidden;
+}
+
+.coral-slider {
+    height: 25rem;
+    border-radius: 5px;
+}
+
+.coral-slider>.coral-item {
+    height: 25rem;
 }
