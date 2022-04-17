@@ -1,4 +1,4 @@
-class Coral {
+export default class Coral {
     constructor(obj) {
         this.stepWidth = 0;
         this.mobileStepWidth = 0;
