@@ -1,0 +1,14 @@
+.coral-slider {
+  position: relative;
+  white-space: nowrap;
+  font-size: 0;
+  cursor: pointer; }
+  .coral-slider.scroll-x {
+    overflow-x: scroll; }
+  .coral-slider .coral-item {
+    display: inline-block;
+    vertical-align: top;
+    position: relative; }
+    .coral-slider .coral-item img {
+      height: 35rem; }
+
