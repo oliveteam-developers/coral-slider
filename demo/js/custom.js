@@ -1,3 +1,5 @@
 const coral = new Coral({
-    class: 'slider-first'
+    class: 'slider-first',
+    stepWidth: 300,
+    mobileStepWidth: 300,
 });
