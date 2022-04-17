@@ -8,8 +8,8 @@
 ```javascript
 const coral = new Coral({
     class: 'slider-first',
-    stepWidth: 500,
-    mobileStepWidth: 500,
+    stepWidth: 300,
+    mobileStepWidth: 300,
 });
 ```
 
@@ -18,5 +18,10 @@ const coral = new Coral({
 ```stepWidth``` is the speed on desktop screen. The default is ```500```
 
 ```mobileStepWidth``` is the speed on mobile screen. The default is ```500```
+
+#### Features:
+* Swipe left & right to see the images.
+* Stop slider when mouse hover.
+* Continue running slider when mouse leave.
 
 [Demo](https://coralslider.olive-team.dev)
