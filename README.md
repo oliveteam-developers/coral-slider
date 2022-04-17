@@ -8,8 +8,8 @@
 ```javascript
 const coral = new Coral({
     class: 'slider-first',
-    stepWidth: 300,
-    mobileStepWidth: 300,
+    stepWidth: 500,
+    mobileStepWidth: 500,
 });
 ```
 
